@@ -6,6 +6,7 @@ using YouLearn.Domain.Entitties;
 using YouLearn.Domain.Interfaces.Repositories;
 using YouLearn.Domain.Interfaces.Services;
 using YouLearn.Domain.Resources;
+using YouLearn.Domain.ValueObject;
 
 namespace YouLearn.Domain.Services
 {
@@ -23,25 +24,22 @@ namespace YouLearn.Domain.Services
 
             var user = new User
             {
-                Nome = {FirstName = "Yacov", LastName = "Rosenberg"},
-                Email = {Endereco = "yayaro94@gmail.com"},
-                Senha = "123456"
+                Nome = new Nome(request.FirstName, request.LastName),
+                Email = new Email(request.Email),
+                Senha = request.Senha
             };
+            AddNotifications(user.Nome, user.Email);
 
-            if(user.Nome.FirstName.Length < 3 || user.Nome.FirstName.Length > 50)
-                throw new Exception("Primeiro nome é obrigatório e deve conter entre 3 e 50 caracteres");
 
-            if (user.Nome.FirstName.Length < 3 || user.Nome.FirstName.Length > 50)
-                throw new Exception("Primeiro nome é obrigatório e deve conter entre 3 e 50 caracteres");
+            
 
-            if (user.Email.Endereco.IndexOf('@') < 1)
-                throw new Exception("Email inválido");
-
-            if (user.Senha.Length >= 3 )
+            if (user.Senha.Length <= 3 )
                 throw new Exception("Senha deve ser maior que 3 caracteres");
 
             //Persiste no Banco
-            return user;
+            if (IsInvalid())
+                return null;
+            return new AddUserResponse(Guid.NewGuid());
 
         }
 

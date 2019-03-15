@@ -1,4 +1,5 @@
-﻿using YouLearn.Domain.Entitties.Base;
+﻿using prmToolkit.NotificationPattern;
+using YouLearn.Domain.Entitties.Base;
 using YouLearn.Domain.ValueObject;
 
 namespace YouLearn.Domain.Entitties
