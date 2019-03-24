@@ -1,11 +1,23 @@
 ﻿using prmToolkit.NotificationPattern;
 using YouLearn.Domain.Entitties.Base;
+using YouLearn.Domain.Extensions;
 using YouLearn.Domain.ValueObject;
 
 namespace YouLearn.Domain.Entitties
 {
     public class User : EntityBase
     {
+        public User(Nome nome, Email email, string senha)
+        {
+            Nome = nome;
+            Email = email;
+            Senha = senha;
+
+            new AddNotifications<User>(this).IfNullOrInvalidLength(x => x.Senha, 3, 32);
+
+            Senha.ConvertToMD5();
+        }
+
         public Nome Nome{ get; set; }        
 
         public Email Email { get; set; }
