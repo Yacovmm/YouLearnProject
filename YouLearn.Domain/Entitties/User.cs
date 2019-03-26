@@ -15,14 +15,25 @@ namespace YouLearn.Domain.Entitties
 
             new AddNotifications<User>(this).IfNullOrInvalidLength(x => x.Senha, 3, 32);
 
-            Senha.ConvertToMD5();
+            Senha = Senha.ConvertToMD5();
+
+            AddNotifications(nome, email);
         }
 
-        public Nome Nome{ get; set; }        
+        public User(Email email, string senha)
+        {
+            Email = email;
+            Senha = senha;
+            Senha = Senha.ConvertToMD5();
 
-        public Email Email { get; set; }
+            AddNotifications(email);
+        }
 
-        public string Senha { get; set; }
+        public Nome Nome{ get; private set; }        
+
+        public Email Email { get; private set; }
+
+        public string Senha { get; private set; }
 
     }
 }

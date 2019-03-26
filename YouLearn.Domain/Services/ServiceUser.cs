@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices.ComTypes;
 using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
 using YouLearn.Domain.Arguments.User;
@@ -12,6 +13,15 @@ namespace YouLearn.Domain.Services
 {
     public class ServiceUser : Notifiable, IServiceUser
     {
+        //Dependencies
+        private readonly IRepositoryUser _repositoryUser;
+
+        //Construtor
+        public ServiceUser(IRepositoryUser repositoryUser)
+        {
+            _repositoryUser = repositoryUser;
+        }
+
         public AddUserResponse AddUser(AddUserRequest request)
         {
             if (request == null)
@@ -19,33 +29,55 @@ namespace YouLearn.Domain.Services
                 AddNotification("AdicionarUserRequest", (MSG.OBJETO_X0_E_OBRIGATORIO.ToFormat("AdicionarUserRequest")));
                 return null;
             }
-                
-                
-
-            var user = new User
-            {
-                Nome = new Nome(request.FirstName, request.LastName),
-                Email = new Email(request.Email),
-                Senha = request.Senha
-            };
-            AddNotifications(user.Nome, user.Email);
 
 
+            //Cria value Object e entidades
+            var user = new User(
+                new Nome(request.FirstName, request.LastName),
+                new Email(request.Email),
+                request.Senha
+                );
             
+            AddNotifications(user);
 
-            if (user.Senha.Length <= 3 )
-                throw new Exception("Senha deve ser maior que 3 caracteres");
-
+            if (IsInvalid()) return null;
+            
             //Persiste no Banco
-            if (IsInvalid())
-                return null;
-            return new AddUserResponse(Guid.NewGuid());
+            _repositoryUser.Save(user);
 
+            return new AddUserResponse(user.Id);
         }
 
         public AutentificarUserResponse AutentificarUser(AutentificarUserRequest request)
         {
-            throw new System.NotImplementedException();
+            if (request == null)
+            {
+                AddNotification("AutentificarUserResponse", MSG.OBJETO_X0_E_OBRIGATORIO.ToFormat("AutentificarUserRequest"));
+                return null;
+            }
+
+//            var email = new Email(request.Email);
+//            var user = new 
+
+            var user = new User(
+                request.Email,
+                request.Senha
+                );
+            
+            AddNotifications(user);
+
+            if (this.IsInvalid()) return null;
+
+            user = _repositoryUser.Obter(user.Email.Endereco, user.Senha);
+
+            if (user == null)
+            {
+                AddNotification("User", MSG.DADOS_NAO_ENCONTRADOS);
+            }
+
+            var response = (AutentificarUserResponse) user;
+
+            return response;
         }
     }
 }

@@ -1,8 +1,10 @@
-﻿namespace YouLearn.Domain.Arguments.User
+﻿using YouLearn.Domain.ValueObject;
+
+namespace YouLearn.Domain.Arguments.User
 {
     public class AutentificarUserRequest
     {
-        public string Email { get; set; }
+        public Email Email { get; set; }
 
         public string Senha { get; set; }
     }
