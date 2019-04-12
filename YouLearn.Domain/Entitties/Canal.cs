@@ -10,6 +10,5 @@ namespace YouLearn.Domain.Entitties
         public string UrlLogo { get; set; }
 
         public User User { get; set; }
-
     }
 }

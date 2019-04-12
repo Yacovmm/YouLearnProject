@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using System;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using Microsoft.EntityFrameworkCore.Internal;
 using YouLearn.Domain.Entitties;
 using YouLearn.Domain.Interfaces.Repositories;
 using YouLearn.Infra.Persistence.EF;

@@ -1,19 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="YouLearn.Domain.Entitties.Canal">
-    <Position X="2.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAADAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>Entitties\Canal.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="User" />
-    </ShowAsAssociation>
-  </Class>
   <Class Name="YouLearn.Domain.Entitties.Favorito">
     <Position X="1.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
       <FileName>Entitties\Favorito.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -23,7 +13,7 @@
   <Class Name="YouLearn.Domain.Entitties.Playlist">
     <Position X="6.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAADAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Entitties\Playlist.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -33,30 +23,33 @@
   <Class Name="YouLearn.Domain.Entitties.User">
     <Position X="4.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>Entitties\User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="YouLearn.Domain.Entitties.Video">
     <Position X="7.5" Y="2.75" Width="1.5" />
-    <AssociationLine Name="UsuarioSugeriu" Type="YouLearn.Domain.Entitties.User" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="7.5" Y="4.401" />
-        <Point X="5.699" Y="4.401" />
-        <Point X="5.699" Y="2.538" />
-        <Point X="5.688" Y="2.538" />
-        <Point X="5.688" Y="2.43" />
-      </Path>
+    <AssociationLine Name="UsuarioSugeriu" Type="YouLearn.Domain.Entitties.User">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="-1.207" Y="0.168" />
+        <Position X="0.168" Y="-1.207" />
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>ACASAAAEAAQBAAAAAAIAAACAAAAAAEAAAAAAAAAAABA=</HashCode>
+      <HashCode>ACAQAAAEAAQBAAAAAAIAAACAAAAAAEAAAAAAAAAAABA=</HashCode>
       <FileName>Entitties\Video.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="UsuarioSugeriu" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="YouLearn.Domain.Entitties.Canal">
+    <Position X="2" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Entitties\Canal.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

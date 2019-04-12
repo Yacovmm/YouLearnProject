@@ -7,6 +7,11 @@ namespace YouLearn.Domain.Entitties
 {
     public class User : EntityBase
     {
+        public User()
+        {
+
+        }
+
         public User(Nome nome, Email email, string senha)
         {
             Nome = nome;
@@ -35,5 +40,9 @@ namespace YouLearn.Domain.Entitties
 
         public string Senha { get; private set; }
 
+    }
+
+    public class Class1
+    {
     }
 }
