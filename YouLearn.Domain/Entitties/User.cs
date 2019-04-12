@@ -41,8 +41,4 @@ namespace YouLearn.Domain.Entitties
         public string Senha { get; private set; }
 
     }
-
-    public class Class1
-    {
-    }
 }

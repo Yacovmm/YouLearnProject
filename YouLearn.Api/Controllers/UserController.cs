@@ -17,7 +17,7 @@ namespace YouLearn.Api.Controllers
 
         public UserController(IUnitOfWork unitOfWork, IServiceUser serviceUser) : base(unitOfWork)
         {
-            serviceUser = _serviceUser;
+            _serviceUser = serviceUser;
         }
 
         //[AllowAnonymous]

@@ -9,6 +9,15 @@ namespace YouLearn.Api.Controllers
 {
     public class UtilController
     {
+
+        [HttpGet]
+        [Route("")]
+        public string Get()
+        {
+            return "Bem vindo ao new learn";
+        }
+
+
         [HttpGet]
         [Route("Version")]
         public object Version()

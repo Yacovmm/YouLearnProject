@@ -16,8 +16,8 @@ namespace YouLearn.Domain.ValueObject
             LastName = lastName;
 
             new AddNotifications<Nome>(this)
-                .IfNullOrInvalidLength(x => x.FirstName, 3, 50, MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat(FirstName, 1 , 50))
-                .IfNullOrInvalidLength(x => x.LastName, 3, 50 , MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat(lastName, 3, 50));
+                .IfNullOrInvalidLength(x => x.FirstName, 3, 50, MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat(firstName, 1 , 50))
+                .IfNullOrInvalidLength(x => x.LastName, 3, 50 , MSG.X0_OBRIGATORIO_E_DEVE_CONTER_ENTRE_X1_E_X2_CARACTERES.ToFormat(LastName, 3, 50));
         }
         public string FirstName { get; set; }
 
