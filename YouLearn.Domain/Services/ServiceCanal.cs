@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
@@ -45,12 +46,37 @@ namespace YouLearn.Domain.Services
 
         public IEnumerable<CanalResponse> List(Guid userId)
         {
-            throw new NotImplementedException();
+            var canalCollection = _repositoryCanal.ListCanais(userId);
+
+            var response = canalCollection.ToList().Select(x => (CanalResponse)x);
+
+            return response;
         }
 
-        public Response DeleteCanal(Guid CanalId)
+        public Response DeleteCanal(Guid canalId)
         {
-            throw new NotImplementedException();
+            //bool existe = _repositoryVideo.ExisteCanalAssociado(canalId);
+
+            bool existe = true;
+            if (existe)
+            {
+                AddNotification("Canal", MSG.NAO_E_POSSIVEL_EXCLUIR_UM_X0_ASSOCIADO_A_UM_X1.ToFormat("Canal", "video"));
+                return null;
+            }
+
+            var canal = _repositoryCanal.Obter(canalId);
+
+            if (canal == null)
+            {
+                AddNotification("Canal", MSG.DADOS_NAO_ENCONTRADOS);
+            }
+
+            if (this.IsInvalid())
+                return null;
+
+            _repositoryCanal.DeleteCanal(canal);
+
+            return new Response() { Messagem = MSG.OPERACAO_REALIZADA_COM_SUCESSO };
         }
     }
 }

@@ -27,7 +27,7 @@ namespace YouLearn.Infra.Persistence.Repositories
 
         public IEnumerable<Canal> ListCanais(Guid userId)
         {
-            return _context.Canals.Where(x => x.Id == userId).AsNoTracking().ToList();
+            return _context.Canals.Where(x => x.User.Id == userId).AsNoTracking().ToList();
         }
 
         public Canal Obter(Guid canalId)

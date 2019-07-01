@@ -25,19 +25,19 @@ namespace YouLearn.Infra.Persistence.Repositories
             return playList;
         }
 
-        public IEnumerable<Playlist> ListCanais(Guid userId)
+        public IEnumerable<Playlist> List(Guid userId)
         {
-            return _context.PlayLists.Where(x => x.Id == userId).AsNoTracking().ToList();
+            return _context.Playlists.Where(x => x.Id == userId).AsNoTracking().ToList();
         }
 
-        public PlayList Obter(Guid playListId)
+        public Playlist Obter(Guid playListId)
         {
-            return _context.PlayLists.FirstOrDefault(x => x.Id == playListId);
+            return _context.Playlists.FirstOrDefault(x => x.Id == playListId);
         }
 
-        public void DeletePlayList(PlayList playList)
+        public void DeletePlayList(Playlist playList)
         {
-            _context.PlayLists.Remove(playList);
+            _context.Playlists.Remove(playList);
         }
     }
 }

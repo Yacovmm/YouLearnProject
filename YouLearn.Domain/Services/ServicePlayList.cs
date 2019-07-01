@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using prmToolkit.NotificationPattern;
 using prmToolkit.NotificationPattern.Extensions;
@@ -28,7 +29,7 @@ namespace YouLearn.Domain.Services
             _repositoryPlayList = repositoryPlayList;
         }
 
-        public PlayListResponse AddCanal(AddPlayListRequest request, Guid userId)
+        public PlayListResponse AddPlayList(AddPlayListRequest request, Guid userId)
         {
             var user = _repositoryUser.Obter(userId);
             var playList = new Playlist(request.Name, user);
@@ -43,14 +44,40 @@ namespace YouLearn.Domain.Services
             return (PlayListResponse)playList;
         }
 
-        public Response DeletePlayList(Guid CanalId)
+        public Response DeletePlayList(Guid playListId)
         {
-            throw new NotImplementedException();
+            //bool existe _repositoryVideo.ExistePlayListAssociada(playListId);
+            bool existe = false;
+
+            if (existe)
+            {
+                AddNotification("PlayList", MSG.NAO_E_POSSIVEL_EXCLUIR_UMA_X0_ASSOCIADA_A_UMA_X1.ToFormat("PlayList", "video"));
+                return null;
+            }
+
+            Playlist playlist = _repositoryPlayList.Obter(playListId);
+
+            if(playlist == null)
+            {
+                AddNotification("PlayList", MSG.DADOS_NAO_ENCONTRADOS);
+            }
+
+            if (this.IsInvalid())
+                return null;
+
+            _repositoryPlayList.DeletePlayList(playlist);
+
+            return new Response() { Messagem = MSG.OPERACAO_REALIZADA_COM_SUCESSO };
+
         }
 
         public IEnumerable<PlayListResponse> List(Guid userId)
         {
-            throw new NotImplementedException();
+            var playListCollection = _repositoryPlayList.List(userId);
+
+            var response = playListCollection.ToList().Select(x => (PlayListResponse)x);
+
+            return response;
         }
     }
 }

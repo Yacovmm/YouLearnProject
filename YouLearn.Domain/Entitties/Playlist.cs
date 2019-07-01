@@ -12,6 +12,8 @@ namespace YouLearn.Domain.Entitties
             User = user;
 
             new AddNotifications<Playlist>(this).IfNullOrInvalidLength(x => x.Nome, 2, 100);
+
+            AddNotifications(user);
         }
 
         public string Nome { get; private set; }

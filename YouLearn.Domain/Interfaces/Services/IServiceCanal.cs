@@ -15,6 +15,6 @@ namespace YouLearn.Domain.Interfaces.Services
 
         CanalResponse AddCanal(AddCanalRequest request, Guid userId);
 
-        Response DeleteCanal(Guid CanalId);
+        Response DeleteCanal(Guid canalId);
     }
 }
